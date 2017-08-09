@@ -90,4 +90,22 @@ public class PromocaoTest {
 		
 	}
 	
+	@Test(expected=RuntimeException.class)
+	public void naoDeveRegistrarLanceNegativo(){
+		Promocao promocao = new CriadorDePromocao()
+									.para("XbOX")
+									.comLance(rafael, -20.0)
+									.criar();
+		
+	}
+
+	@Test(expected=RuntimeException.class)
+	public void naoDeveRegistrarLanceComValorZero(){
+		Promocao promocao = new CriadorDePromocao()
+									.para("XbOX")
+									.comLance(rafael, 0.0)
+									.criar();
+		
+	}
+	
 }
