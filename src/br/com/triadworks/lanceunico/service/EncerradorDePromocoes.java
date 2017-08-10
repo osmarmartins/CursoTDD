@@ -9,18 +9,27 @@ import br.com.triadworks.lanceunico.modelo.Status;
 
 public class EncerradorDePromocoes {
 
+	private PromocaoDao dao;
+	
+	public EncerradorDePromocoes(PromocaoDao dao){
+		this.dao = dao;
+	}
+	
 	public int encerra() {
-		
-		PromocaoDao dao = new PromocaoDao();
 		
 		int total = 0;
 		List<Promocao> promocoes = dao.abertas();
 		
 		for (Promocao promocao : promocoes) {
-			if (promocao.foraDaVigencia(new Date())) {
-				promocao.setStatus(Status.ENCERRADA);
-				dao.atualiza(promocao);
-				total++;
+			
+			try {
+				if (promocao.foraDaVigencia(new Date())) {
+					promocao.setStatus(Status.ENCERRADA);
+					dao.atualiza(promocao);
+					total++;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
 			}
 		}
 		

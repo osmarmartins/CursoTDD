@@ -1,5 +1,7 @@
 package br.com.triadworks.lanceunico.builders;
 
+import java.util.Date;
+
 import br.com.triadworks.lanceunico.modelo.Cliente;
 import br.com.triadworks.lanceunico.modelo.Lance;
 import br.com.triadworks.lanceunico.modelo.Promocao;
@@ -22,4 +24,8 @@ public class CriadorDePromocao {
 		return this.promocao;
 	}
 
+	public CriadorDePromocao naData(Date data){
+		promocao.setData(data);
+		return this;
+	}
 }
