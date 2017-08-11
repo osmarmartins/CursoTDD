@@ -171,5 +171,16 @@ public class TesteSorteio {
 		assertEquals(0, sorteio.getMenores().size());
 
 	}
+	
+	@Test(expected=RuntimeException.class)
+	public void naoDeveRegistrarLanceMaiorQueOPermitido(){
+
+		Promocao promocao = new CriadorDePromocao()
+								.para("XBox")
+								.comValorMaximo(200.0)
+								.comLance(rafael, 300.0)
+								.criar();
+
+	}
 
 }

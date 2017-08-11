@@ -12,6 +12,7 @@ public class CriadorDePromocao {
 	
 	public CriadorDePromocao para(String nome){
 		this.promocao = new Promocao(nome);
+		this.promocao.setValorMaximo(60000000.0);
 		return this;
 	}
 	
@@ -26,6 +27,11 @@ public class CriadorDePromocao {
 
 	public CriadorDePromocao naData(Date data){
 		promocao.setData(data);
+		return this;
+	}
+
+	public CriadorDePromocao comValorMaximo(double valorMaximo) {
+		promocao.setValorMaximo(valorMaximo);
 		return this;
 	}
 }

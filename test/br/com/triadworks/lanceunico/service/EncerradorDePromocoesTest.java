@@ -130,5 +130,35 @@ public class EncerradorDePromocoesTest {
 		assertEquals("Encerradas", 1, encerradas);
 	
 	}
-
+	
+	@Test
+	public void deveGarantirQueContinuaProcessamentoAposErroDeTodasAsPromocoes(){
+		
+		Date antiga = DateUtils.novaData("01/05/2017");
+		
+		Promocao tv = new CriadorDePromocao()
+						.para("TV Led 32' ")
+						.naData(antiga)
+						.criar();
+		
+		Promocao xbox = new CriadorDePromocao()
+						.para("xBox")
+						.naData(antiga)
+						.criar();
+		
+		List<Promocao> promocoes = Arrays.asList(tv, xbox);
+		
+		PromocaoDao daoFalso = mock(PromocaoDao.class);
+		when(daoFalso.abertas()).thenReturn(promocoes);
+		doThrow(new RuntimeException()).when(daoFalso).atualiza(tv);
+		
+		EncerradorDePromocoes encerrador = new EncerradorDePromocoes(daoFalso);
+		int encerradas = encerrador.encerra();
+		
+		verify(daoFalso).atualiza(xbox);
+		assertEquals("Encerradas", 1, encerradas);
+	
+	}
+	
+	
 }
