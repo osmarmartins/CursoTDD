@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class PesquisaNoGoogle {
 
 	public static void main(String[] args) {
-		//System.setProperty("webdriver.gecko.driver", "/home/tdd07/geckodriver");
+		System.setProperty("webdriver.gecko.driver", "/home/tdd07/geckodriver");
 		
 		WebDriver driver = new FirefoxDriver();
 		
